@@ -7,6 +7,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" type="text/css" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
           <meta name="description" content="Simple Kiosk App" />
           <link rel="icon" href="/Burger-King-Logo.png" />
         </Head>

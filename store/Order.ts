@@ -1,31 +1,33 @@
 import { makeAutoObservable } from 'mobx';
+import { Menu, OrderMenu } from '../types/menu';
 
 class Order {
-  orderMenu = [{ menuId: 1, amount: 0 }];
+  orderMenu: OrderMenu[] = [];
   totalPrice = 0;
+
   constructor() {
     makeAutoObservable(this);
   }
 
-  changeOrderMenu(param: number, param2: number) {
-    const isExist = this.orderMenu.find((order) => order.menuId === param);
-    if (isExist === undefined) {
-      this.orderMenu.push({ menuId: param, amount: param2 });
+  changeOrderMenu(param: Menu) {
+    const isExist = this.orderMenu.find((menu) => menu.name === param.name);
+    if (!isExist) {
+      this.orderMenu.push({ name: param.name, price: param.price, amount: 1 });
     } else {
-      isExist.amount = isExist.amount + param2;
-      isExist.amount <= 0
-        ? this.orderMenu.splice(
-            this.orderMenu.findIndex((order) => order.menuId === param),
-            1,
-          )
-        : null;
+      this.orderMenu.map((a) => {
+        if (a.name === param.name) {
+          a.amount++;
+        }
+      });
     }
+    this.totalPrice = 0;
+    this.orderMenu.map((a) => {
+      this.totalPrice = this.totalPrice + a.price * a.amount;
+    });
   }
 
-  plusPrice(props: number) {
-    this.totalPrice = this.totalPrice + props;
-  }
   clearPrice() {
+    this.orderMenu = [];
     this.totalPrice = 0;
   }
 }

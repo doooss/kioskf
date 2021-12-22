@@ -1,11 +1,13 @@
-import { Box, Tab, Button } from '@mui/material';
+import { Box, Button, Tab } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import TabList from '@mui/lab/TabList';
 import { observer } from 'mobx-react';
 import { SyntheticEvent, useState } from 'react';
-import { order } from 'store/Order';
 import MenuContainer from 'components/menu/menucontainer';
 import { TabContext } from '@mui/lab';
+import OrderTable from 'components/menu/ordertable';
+import { order } from 'store/Order';
+import { common } from 'store/Common';
 
 const tabs = [
   { value: 'main', label: 'main Menu' },
@@ -30,7 +32,7 @@ const Menu = observer(() => {
             position: 'sticky',
             top: 0,
             left: 0,
-            backgroundColor: 'white',
+            backgroundColor: '#EDEEF0',
             zIndex: 5,
           }}
         >
@@ -40,7 +42,7 @@ const Menu = observer(() => {
             })}
           </TabList>
         </Box>
-        <Box sx={{ width: '100vw', maxWidth: '100%', marginTop: '50px' }}>
+        <Box sx={{ width: '100vw', maxWidth: '100%', paddingBottom: '500px', backgroundColor: '#D1DFE8' }}>
           {tabs.map((a, i) => {
             return (
               <TabPanel value={a.value} key={i}>
@@ -50,33 +52,28 @@ const Menu = observer(() => {
           })}
         </Box>
       </TabContext>
-      <Box sx={{ position: 'fixed', bottom: 0, width: '100%', backgroundColor: 'white' }}>
-        {/* <TableContainer>
-        <TableHead>
-          <TableRow>
-            <TableCell>제품명</TableCell>
-            <TableCell>가격</TableCell>
-            <TableCell>갯수</TableCell>
-            <TableCell>총 가격</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-          </TableRow>
-        </TableBody>
-      </TableContainer> */}
-        <Box sx={{ width: '300px', margin: 'auto' }}>
-          총 주문 금액 : {order.totalPrice} 원
-          <Button variant="contained" color="success">
-            주문하기
-          </Button>{' '}
-          <Button variant="contained" color="warning">
-            초기화
-          </Button>
+      <Box sx={{ position: 'fixed', width: '100%', bottom: 0, display: 'flex', backgroundColor: '#EDEEF0' }}>
+        <Box sx={{ margin: 'auto' }}>
+          {common.orderstate ? (
+            <OrderTable />
+          ) : (
+            <Box sx={{ paddingY: '10px' }}>
+              <span>총 주문 금액 : {order.totalPrice} 원</span>
+              <Button variant="contained" color="success" sx={{ ml: 5 }}>
+                주문하기
+              </Button>
+              <Button
+                variant="contained"
+                color="info"
+                sx={{ ml: 3 }}
+                onClick={() => {
+                  common.changeorderState();
+                }}
+              >
+                상세보기
+              </Button>
+            </Box>
+          )}
         </Box>
       </Box>
     </>

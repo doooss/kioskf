@@ -1,5 +1,6 @@
 import { Grid } from '@mui/material';
-import MenuCard, { Menu } from './menucard';
+import MenuCard from './menucard';
+import { Menu } from '../../types/menu.d';
 import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { common } from 'store/Common';
