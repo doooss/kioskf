@@ -2,6 +2,8 @@ import { Button, TableBody, TableCell, TableContainer, TableHead, TableRow } fro
 import { observer } from 'mobx-react';
 import { common } from 'store/Common';
 import { order } from 'store/Order';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 const OrderTable = observer(() => {
   return (
@@ -22,7 +24,21 @@ const OrderTable = observer(() => {
                 {a.name}
               </TableCell>
               <TableCell align="center">{a.price}원</TableCell>
-              <TableCell align="center">{a.amount}개</TableCell>
+              <TableCell align="center">
+                {a.amount}개{' '}
+                <KeyboardArrowDownIcon
+                  sx={[{ verticalAlign: 'middle' }, { '&:hover': { cursor: 'pointer' } }]}
+                  onClick={() => {
+                    order.minusOrderAmount(a.name);
+                  }}
+                />
+                <KeyboardArrowUpIcon
+                  sx={[{ verticalAlign: 'middle' }, { '&:hover': { cursor: 'pointer' } }]}
+                  onClick={() => {
+                    order.plusOrderAmount(a.name);
+                  }}
+                />
+              </TableCell>
               <TableCell align="right">{a.price * a.amount}원</TableCell>
             </TableRow>
           );
