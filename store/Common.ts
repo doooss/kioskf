@@ -3,7 +3,9 @@ import { makeAutoObservable } from 'mobx';
 class Common {
   title = 'Home';
 
-  orderstate = false;
+  orderState = false;
+
+  signInState = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -12,8 +14,16 @@ class Common {
   changeTitle(props: string) {
     this.title = props;
   }
-  changeorderState() {
-    this.orderstate = !this.orderstate;
+  changeOrderState() {
+    this.orderState = !this.orderState;
+  }
+
+  makeSignInStateToFalse() {
+    this.signInState = false;
+  }
+
+  makeSignInStateToTrue() {
+    this.signInState = true;
   }
 }
 

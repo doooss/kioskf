@@ -27,7 +27,7 @@ const MenuContainer = observer((props: { catagory: string }) => {
       {appData.map((a: Menu) => {
         return (
           <>
-            <Grid item xs={12} md={6} xl={4}>
+            <Grid item xs={12} md={6} xl={4} key={a.name}>
               <MenuCard name={a.name} price={a.price} imgurl={a.imgurl} />
             </Grid>
           </>
