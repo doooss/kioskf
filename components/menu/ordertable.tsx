@@ -53,7 +53,7 @@ const OrderTable = observer(() => {
               variant="contained"
               color="warning"
               onClick={() => {
-                common.changeorderState();
+                common.changeOrderState();
               }}
             >
               접기

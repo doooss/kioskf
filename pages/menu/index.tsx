@@ -54,7 +54,7 @@ const Menu = observer(() => {
       </TabContext>
       <Box sx={{ position: 'fixed', width: '100%', bottom: 0, display: 'flex', backgroundColor: '#EDEEF0' }}>
         <Box sx={{ margin: 'auto' }}>
-          {common.orderstate ? (
+          {common.orderState ? (
             <OrderTable />
           ) : (
             <Box sx={{ paddingY: '10px' }}>
@@ -67,7 +67,7 @@ const Menu = observer(() => {
                 color="info"
                 sx={{ ml: 3 }}
                 onClick={() => {
-                  common.changeorderState();
+                  common.changeOrderState();
                 }}
               >
                 상세보기
